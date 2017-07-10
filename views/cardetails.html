@@ -1,0 +1,62 @@
+<div>
+
+	<div class="container jumbotron" ng-if="!cdCtrl.paymentpage">
+		<div class="row border_f even">
+			<div class="col-2 border_f">
+				Icon
+			</div>
+			<div class="col-5 border_f">
+				Make/Model
+			</div>
+			<div class="col-5 border_f">
+				Rental Costs
+			</div>
+		</div>
+		<div class="row border_f" ng-repeat="roll in cdCtrl.accData" ng-class-even="'even'" ng-click="cdCtrl.rowClick({roll})">
+			<div class="col-2 border_f">
+				<img ng-src="data:image/gif;base64,{{roll.icon}}" class="img-fluid"/>
+			</div>
+			<div class="col-5 border_f">
+				<div>
+					{{ roll.makemodel }}
+				</div>
+				<div class="ellipses">
+					{{ roll.makemodel_des }}
+				</div>
+			</div>
+			<div class="col-5 border_f">
+				<div>
+					{{ roll.rentalCosts_d }}
+				</div>
+				<div>
+					{{ roll.rentalCosts_w }}
+				</div>
+				<div>
+					{{ roll.rentalCosts_m }}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container jumbotron" ng-if="cdCtrl.paymentpage">
+
+		<div class="card text-center">
+			<div class="card-header">
+				{{'Purchasing: '+ cdCtrl.purchaseVal}}
+			</div>
+			<div class="card-block">
+				<h4 class="card-title">Credit Card Number</h4>
+				<div class="input-group">
+					<span class="input-group-addon ccard {{ cdCtrl.myccno | validate }}" id="basic-addon1"></span>
+					<input type="text" only-card-num id="cardno" class="form-control input-lg" ng-model="cdCtrl.myccno" placeholder="Credit Card Number" aria-describedby="basic-addon1">
+				</div>
+				<button type="button" class="btn btn-lg btn-primary mt-4"  ng-click="cdCtrl.validateCard()">
+					pay
+				</button>
+
+			</div>
+
+		</div>
+	</div>
+
+</div>
